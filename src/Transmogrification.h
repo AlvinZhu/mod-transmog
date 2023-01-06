@@ -205,6 +205,7 @@ public:
     bool EnableRetroActiveAppearances() const;
     bool EnableResetRetroActiveAppearances() const;
     [[nodiscard]] bool IsEnabled() const;
+    static void _LocalizeItem(Player const* forPlayer, std::string &itemName, uint32 entry);
 };
 #define sTransmogrification Transmogrification::instance()
 

@@ -974,3 +974,21 @@ bool Transmogrification::IsEnabled() const
 {
     return IsTransmogEnabled;
 };
+
+//Localization
+void Transmogrification::_LocalizeItem(Player const* forPlayer, std::string &itemName, uint32 entry)
+{
+    uint32 loc = forPlayer->GetSession()->GetSessionDbLocaleIndex();
+    std::wstring wnamepart;
+
+    ItemLocale const* itemInfo = sObjectMgr->GetItemLocale(entry);
+    if (!itemInfo)
+        return;
+
+    if (itemInfo->Name.size() > loc && !itemInfo->Name[loc].empty())
+    {
+        const std::string name = itemInfo->Name[loc];
+        if (Utf8FitTo(name, wnamepart))
+            itemName = name;
+    }
+}
